@@ -1,6 +1,4 @@
-# firstformation
-
-> A Vue.js project
+**I'v decided to do this project in order to grow my skills and to have a small indivudual full stack project**
 
 ## Build Setup
 
@@ -23,8 +21,19 @@ npm run unit
 # run e2e tests
 npm run e2e
 
+# npm run startServer
+start all server back and front
+
 # run all tests
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+```
+
+## Tools
+this project has been done by using:
+1.express sql
+2.maria db
+3.sequelize
+4.vue js
+
