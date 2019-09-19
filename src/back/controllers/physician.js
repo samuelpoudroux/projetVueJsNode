@@ -21,7 +21,11 @@ exports.physician_create = (req, res) => {
     }
     // Save physician in the database
     Physician.create({
-        firstName: req.body.firstName
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        age: req.body.age,
+        addressId: req.body.addressId,
+        specialityId: req.body.specialityId
     }).then(data => {
         res.send(data);
     }).catch(err => {
@@ -30,7 +34,6 @@ exports.physician_create = (req, res) => {
         });
     });
 };
-
 
 // Find a single note with a physicianId
 exports.physician_findOne = (req, res) => {
@@ -55,13 +58,17 @@ exports.physician_findOne = (req, res) => {
 
 // Update a note identified by the noteId in the request
 exports.physician_update = (req, res) => {
-    if (!req.body.firstName) {
+    if (!req.body.firstName || !req.body.lastName) {
         return res.status(400).send({
             message: "Note content can not be empty"
         });
     }
     Physician.update({
-            firstName: req.body.firstName
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            age: req.body.age,
+            addressId: req.body.addressId,
+            specialityId: req.body.specialityId
         }, {
             where: {
                 id: req.params.physicianId

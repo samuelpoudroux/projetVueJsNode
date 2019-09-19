@@ -14,14 +14,18 @@ exports.patient_get = (req, res) => {
 // Create and Save a new patient
 exports.patient_create = (req, res) => {
     // Validate request
-    if (!req.body.firstName) {
+    if (!req.body.firstName || !req.body.lastName) {
         return res.status(400).send({
             message: "le prénom du medecin doit être indiqué"
         });
     }
     // Save patient in the database
     Patient.create({
-        firstName: req.body.firstName
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        age: req.body.age,
+        addressId: req.body.addressId
+
     }).then(data => {
         res.send(data);
     }).catch(err => {
@@ -55,13 +59,16 @@ exports.patient_findOne = (req, res) => {
 
 // Update a note identified by the noteId in the request
 exports.patient_update = (req, res) => {
-    if (!req.body.firstName) {
+    if (!req.body.firstName || !req.body.lastName) {
         return res.status(400).send({
             message: "Note content can not be empty"
         });
     }
     Patient.update({
-            firstName: req.body.firstName
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            age: req.body.age,
+            addressId: req.body.addressId
         }, {
             where: {
                 id: req.params.patientId

@@ -32,8 +32,10 @@ npm test
 
 ## Tools
 this project has been done by using:
-1.express sql
+1.express 
+2.sql
 2.maria db
 3.sequelize
 4.vue js
+5.node-js
 

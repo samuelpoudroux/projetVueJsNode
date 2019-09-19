@@ -1,7 +1,6 @@
 
-
 <template>
-  <div id='hello'>
+  <div id='home'>
     <div>
       <h1 class='display-3'>personLIst</h1>
       <ul id="hello">
@@ -10,16 +9,13 @@
          </li>
          <Button v-on:click='showPopup' >Poster une nouvelle person</Button>
 </ul>
-          <postPerson :visible='visible' ></postPerson> 
-
     </div>
   </div>
 </template>
 
 <script>
-import PostPerson from './postPerson.vue'
 export default {
-  name: 'hello',
+  name: 'home',
     data ()  {
       return {
       persons : [
@@ -56,9 +52,6 @@ export default {
     this.getPersonsData()
   },
 
-  components: {
-    PostPerson
-  }
 } 
 
 </script>

@@ -6,9 +6,10 @@ var bodyParser = require("body-parser");
 var mysql = require('mysql');
 var physicianRouter = require('./routes/physician.js');
 var patientRouter = require('./routes/patient.js');
+var appointmentRouter = require('./routes/appointment.js');
 var indexRouter = require('./routes/index.js');
 var addressRouter = require('./routes/address.js');
-
+var specialityRouter = require('./routes/speciality.js');
 
 
 var mySqlClient = mysql.createConnection({
@@ -30,8 +31,8 @@ app.use(indexRouter);
 app.use(patientRouter);
 app.use(physicianRouter);
 app.use(addressRouter);
-
-
+app.use(appointmentRouter);
+app.use(specialityRouter);
 
 // Démarrer le serveur 
 app.listen(port, hostname, function() {
