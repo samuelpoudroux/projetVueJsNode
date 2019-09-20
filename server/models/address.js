@@ -7,9 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         door: DataTypes.INTEGER
     }, {});
     Address.associate = function(models) {
-        Address.belongsTo(models.Physician)
-        Address.hasOne(models.Patient, { foreignKey: "addressId" });
-        Address.hasOne(models.Physician, { foreignKey: "addressId" });
+        // associations can be defined here
     };
     return Address;
 };

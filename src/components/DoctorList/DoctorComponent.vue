@@ -3,7 +3,6 @@
         <b class="bv-example-row">
               <div class='mt-3 center'>
                 <b-col md='7' sm='12' class='doctorList border-style'>2 of 3
-                
                 </b-col>
                 <b-col md='3' sm='12' class='doctorForm border-style'>
                 <DoctorPopupCreation/>

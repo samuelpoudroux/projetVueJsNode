@@ -14,9 +14,9 @@ exports.physician_get = (req, res) => {
 // Create and Save a new physician
 exports.physician_create = (req, res) => {
     // Validate request
-    if (!req.body.firstName) {
+    if (!req.body.firstName || !req.body.lastName) {
         return res.status(400).send({
-            message: "le prénom du medecin doit être indiqué"
+            message: "Note content can not be empty"
         });
     }
     // Save physician in the database

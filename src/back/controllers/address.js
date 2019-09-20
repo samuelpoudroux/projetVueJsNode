@@ -14,9 +14,9 @@ exports.address_get = (req, res) => {
 // Create and Save a new address
 exports.address_create = (req, res) => {
     // Validate request
-    if (!req.body.street || !req.body.street || !req.body.city || !req.body.door) {
+    if (!req.body.street || !req.body.city || !req.body.country || !req.body.door) {
         return res.status(400).send({
-            message: "le prénom du medecin doit être indiqué"
+            message: "Note content can not be empty"
         });
     }
     // Save address in the database
@@ -59,11 +59,6 @@ exports.address_findOne = (req, res) => {
 
 // Update a note identified by the noteId in the request
 exports.address_update = (req, res) => {
-    if (!req.body.street || !req.body.street || !req.body.city || !req.body.door) {
-        return res.status(400).send({
-            message: "Note content can not be empty"
-        });
-    }
     Address.update({
             street: req.body.street,
             city: req.body.city,

@@ -12,7 +12,7 @@
       >
         <b-form-input
           id="input-1"
-          v-model="form.lastName"
+          v-model="physicianData.lastName"
           type=""
           required
           placeholder="Enter Nom"
@@ -23,13 +23,14 @@
         <b-form-input
           id="input-2"
         required
+                  v-model="physicianData.firstName"
           placeholder="Prénom"
         ></b-form-input>
       </b-form-group>
 
       <b-form-group class='form' id="input-group-3" label="Age:" label-for="input-3">
        <b-form-input
-        v-model="form.age"
+        v-model="physicianData.age"
           id="input-2"
           placeholder="Age"
         ></b-form-input>
@@ -38,7 +39,7 @@
         <b-form-group class='form' id="input-group-3" label="Rue:" label-for="input-3">
        <b-form-input
                  required
-        v-model="form.street"
+        v-model="addressData.street"
           id="input-2"
           placeholder="Rue"
         ></b-form-input>
@@ -47,7 +48,7 @@
         <b-form-group class='form' id="input-group-3" label="Ville:" label-for="input-3">
        <b-form-input
                  required
-        v-model="form.city"
+        v-model="addressData.city"
           id="input-2"
           placeholder="Ville"
         ></b-form-input>
@@ -55,10 +56,8 @@
 
         <b-form-group class='form' id="input-group-3" label="Pays:" label-for="input-3">
        <b-form-input
-                 v-model="form.country"
+                 v-model="addressData.country"
                            required
-
-
           id="input-2"
           placeholder="Pays"
         ></b-form-input>
@@ -66,9 +65,8 @@
 
         <b-form-group class='form' id="input-group-3" label="Numero:" label-for="input-3">
        <b-form-input
-                 v-model="form.door"
           required
-
+        v-model="addressData.door"
           id="input-2"
           placeholder="Numero"
         ></b-form-input>
@@ -77,7 +75,7 @@
       <b-form-group class='form' id="input-group-3" label="specialité:" label-for="input-3">
         <b-form-select
           id="input-3"
-          v-model="form.name"
+          v-model="speciality.name"
           :options="foods"
         ></b-form-select>
       </b-form-group>
@@ -96,30 +94,77 @@
     data() {
       return {
             form: {
+                specialityId: "",
+                checked:[]
+            },
+            speciality: {
+                name:"",
+
+            },
+            physicianData:{
                 firstName: "",
                 lastName: "",
-                age: "",
-                specialityId: "",
-                addressId: "",
+                age: null,
+                addressId:""
+            },
+            addressData: {
                 street: "",
                 city: "",
                 country: "",
                 door: "",
-                name:"",
-                checked:[]
             },
-
             show:true
-
-        }
+      }
     },
 
     methods: {
       onSubmit(evt) {
         evt.preventDefault()
-                alert(JSON.stringify(this.form))
-
+        this.postPhysician()
       },
+
+      postPhysician(){
+          let addressBody = {
+               street: this.addressData.street,
+                city: this.addressData.city,
+                country: this.addressData.country,
+                door: this.addressData.door
+          }
+
+          let physicianBody = {
+                firstName: this.physicianData.firstName,
+                lastName: this.physicianData.lastName,
+                age: this.physicianData.age,
+                addressId:""
+        }
+
+        
+
+        fetch('http://localhost:3000/addresses/', {
+            method: 'POST',
+           headers: {
+                "Content-Type": "application/json"
+            },
+                body: JSON.stringify(addressBody)
+            }).then(response => {
+                return response.json()
+                })
+                .then(addressData=> {
+                physicianBody.addressId = addressData.id
+                let physicianData = this.physicianData
+                fetch('http://localhost:3000/physicians', {
+                method: 'POST',
+               headers: {
+                "Content-Type": "application/json"
+            },
+                    body: JSON.stringify(physicianBody)
+                }).then(physicianDataResponse => {
+                    console.log(physicianDataResponse)
+                })
+            })
+               
+    },
+
       onReset(evt) {
         evt.preventDefault()
         // Reset our form values
@@ -151,12 +196,9 @@
 .center{
     display: flex;
     flex-direction: column;
-justify-content: center;
-align-content: center;
-align-items: center
+    justify-content: center;
+    align-content: center;
+    align-items: center
 }
-
-
-
 
 </style>
