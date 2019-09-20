@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../components/Home/Hello.vue'
-import DoctorList from '../components/DoctorList/doctorList'
+import Home from '../components/Home/Home.vue'
+import Test from '../components/test'
+import DoctorList from '../components/DoctorList/DoctorComponent.vue'
+import MyProfile from '../components/MyProfile/MyProfile'
 import Auth from '@okta/okta-vue'
 
 Vue.use(Auth, {
@@ -18,20 +20,36 @@ let router = new Router({
     routes: [{
             path: '/',
             name: 'host',
-            component: Home
+            component: Test,
         },
         {
             path: '/implicit/callback',
             component: Auth.handleCallback()
         },
         {
-            path: '/doctors',
+            path: '/doctorList',
             name: 'doctorList',
             component: DoctorList,
             meta: {
                 requiresAuth: true
             }
-        }
+        },
+        {
+            path: '/myProfile',
+            name: 'profile',
+            component: MyProfile,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/home',
+            name: 'home',
+            component: Home,
+            meta: {
+                requiresAuth: true
+            }
+        },
     ]
 })
 

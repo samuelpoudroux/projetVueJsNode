@@ -1,48 +1,38 @@
 
 <template>
   <div id='app'>
-<b-navbar id='menu' toggleable="md" type="dark" variant="dark">
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-collapse is-nav id="nav_collapse">
-        <b-navbar-nav>
-          <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/doctorList">Liste des medecins</b-nav-item>
-          <b-nav-item to="/patientList">liste des patients</b-nav-item>
-          <b-nav-item to="/appointmentList">liste des rendez-vous</b-nav-item>
-          <b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
-          <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>    <!-- routes will be rendered here -->
+    <Menu :logout="logout" :login="login"/>
     <router-view />
   </div>
 </template>
 
-
 <script>
-import Menu from "./menu.vue"
-
+import Menu from './menu.vue'
 export default {
-  name: "app",
-   components: {
-        Menu,
-    },
+  name: "App",
+  components: {
+    Menu,
+  },
   data() {
     return {
-      activeUser: null
+      activeUser: null,
+        authenticated:undefined,
     };
   },
   async created() {
     await this.refreshActiveUser();
   },
+
   watch: {
     // everytime a route is changed refresh the activeUser
     $route: "refreshActiveUser"
   },
   methods: {
-    login() {
+    async login() {
       this.$auth.loginRedirect();
+      this.$router.push("/home");
     },
+
     async refreshActiveUser() {
       this.activeUser = await this.$auth.getUser();
     },
@@ -51,9 +41,7 @@ export default {
       await this.refreshActiveUser();
       this.$router.push("/");
     }
-  },
-
-  
+  },  
 };
 </script>
 
@@ -68,11 +56,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-    height: 100%;
-    background:rgb(116, 122, 116);
-
+    
+  
 }
 
+.navBar{
+  background: black
+}
 main {
   text-align: center;
   margin-top: 40px;
@@ -82,8 +72,6 @@ header {
   margin: 0;
   height: 56px;
   padding: 0 16px 0 24px;
-  background-color: #35495e;
-  color: #ffffff;
 }
 
 header span {
@@ -96,4 +84,7 @@ header span {
   box-sizing: border-box;
   padding-top: 16px;
 }
+
+
+
 </style>
