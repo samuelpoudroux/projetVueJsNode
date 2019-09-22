@@ -2,7 +2,8 @@
  <template>
         <b class="bv-example-row">
               <div class='mt-3 center'>
-                <b-col md='7' sm='12' class='doctorList border-style'>2 of 3
+                <b-col md='7' sm='12' class='doctorList'>
+                <DoctorList/>
                 </b-col>
                 <b-col md='3' sm='12' class='doctorForm border-style'>
                 <DoctorPopupCreation/>
@@ -13,27 +14,16 @@
 
 <script>
 import DoctorPopupCreation from './DoctorPopupCreation.vue'
+import DoctorList from './DocteurList.vue'
+
 export default {
   name: 'DoctorComponent',
     
   components : {
-      DoctorPopupCreation,
+      DoctorPopupCreation,DoctorList
     },   
 
   methods:{
-   postPerson(e){
-     let personData = this.personData
-     console.log(this.personData)
-     fetch('http://localhost:3000/persons', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        personData
-    })
-});
-   }
 
   },
 } 

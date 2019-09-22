@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     age: DataTypes.INTEGER,
-    speciality: DataTypes.STRING,
+    specialityId: DataTypes.INTEGER,
     addressId: DataTypes.INTEGER
   }, {});
   Physician.associate = function(models) {

@@ -5,6 +5,7 @@ import Test from '../components/test'
 import DoctorList from '../components/DoctorList/DoctorComponent.vue'
 import MyProfile from '../components/MyProfile/MyProfile'
 import Auth from '@okta/okta-vue'
+import DoctorDetails from "../components/DoctorList/DoctorDetails.vue"
 
 Vue.use(Auth, {
     issuer: 'https://dev-405206.okta.com/oauth2/default',
@@ -45,10 +46,22 @@ let router = new Router({
         {
             path: '/home',
             name: 'home',
-            component: Home,
+            component: Test,
             meta: {
                 requiresAuth: true
             }
+
+
+        },
+
+        {
+            path: '/doctorDetails',
+            name: 'doctorDetails',
+            component: DoctorDetails,
+            meta: {
+                requiresAuth: true
+            },
+            props: true
         },
     ]
 })
