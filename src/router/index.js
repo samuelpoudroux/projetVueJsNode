@@ -7,6 +7,9 @@ import MyProfile from '../components/MyProfile/MyProfile'
 import Auth from '@okta/okta-vue'
 import DoctorDetails from "../components/DoctorList/DoctorDetails.vue"
 
+
+
+
 Vue.use(Auth, {
     issuer: 'https://dev-405206.okta.com/oauth2/default',
     client_id: '0oa1brv3lz6TH5qrE357',

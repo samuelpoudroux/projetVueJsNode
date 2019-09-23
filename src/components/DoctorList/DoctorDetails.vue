@@ -1,23 +1,33 @@
 
   <template>
-  <div>
-  <p>
-    <b>Nom:</b>{{ physician.firstName }}  <b>Prénom:</b>{{ physician.lastName }} <b>aGE:</b>{{ physician.age }}
-  </p>
+  <div class='row '>
+      <div class=" card col-md-6 p6">
+          <p>
+            <b>Nom:</b>{{ physician.firstName }}  <b>Prénom:</b>{{ physician.lastName }} <b>Age:</b>{{ physician.age }}
+          </p>
 
-  <p>
-    <b>Adresse:</b>{{ addressData.door }} {{ addressData.street }} {{ addressData.city }} {{ addressData.country }}
-  </p>
-  <p>
-    <b>Specialité:</b> {{ specialityData.label }}
-  </p>
+          <p>
+            <b>Adresse:</b>{{ addressData.door }} {{ addressData.street }} {{ addressData.city }} {{ addressData.country }}
+          </p>
+          <p>
+            <b>Specialité:</b> {{ specialityData.label }}
+          </p>
 
-  <p v-on:click="showPopupC" class="btn btn-primary">Modifier</p>
+          <p v-on:click="showPopupC" class="btn btn-primary">Modifier</p>
+                </div>
 
-  <div v-if="showPopup ==true">
-    <DoctorPopupModification :id="id"/>
-  </div>
+      <div v-if="showPopup ==true" >
+      <div class="col-md-12  flexCenter">
+                     <h1 >Modifier le docteur </h1>
 
+      </div>
+        <DoctorPopupModification :id="id"/>
+      </div>
+      <div v-else class="col-md-6">
+         <h1> Cliquez sur modifier pour accéder à la modification docteur </h1>
+      </div>
+
+  
   </div>
 
 </template>
@@ -114,4 +124,28 @@ border: 7px solid #49484869;
 padding: 1%
 }
 
+.card {
+      height: 70%;
+      padding: 3%;
+
+}
+
+.row{
+  padding: 1%;
+  justify-content: center;
+  align-items: center;
+    height: 90%
+
+}
+
+.flexCenter{
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+}
+
+.h1{
+  text-align: center;
+}
 </style>

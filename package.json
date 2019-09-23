@@ -22,6 +22,7 @@
         "bootstrap-vue": "^2.0.0",
         "cors": "^2.8.5",
         "finale-rest": "^1.0.7",
+        "jw-vue-pagination": "^1.0.1",
         "mariadb": "^2.1.1",
         "mysql": "^2.17.1",
         "mysql2": "^1.7.0",

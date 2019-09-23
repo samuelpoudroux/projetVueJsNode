@@ -5,7 +5,6 @@
       <Popup text="Votre medecin à bien été modifié" />
       </div>
      <b-form class='center' @submit="onSubmit" @reset="onReset">
-      <h3 class="mt-3">Ajouter un medecin</h3>
        <b-form-group class='form'
         id="input-group-1"
         label="Nom:"
@@ -77,8 +76,8 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group class='form' id="input-group-3" label="specialité:" label-for="input-3">
-        <p>{{ specialityData.label}}</p>
+      <b-form-group class='form row' id="input-group-3" label="specialité:"  label-for="input-3">
+        <span></span>
         <b-form-select
           id="input-3"
           v-model="form.specialityId"
@@ -239,6 +238,7 @@ import Popup from '../Popup.vue';
                        this.physician=data,
                          this.addressData=dataFetches[0],
                             this.specialityData=dataFetches[1]
+                            this.specialityId=dataFetches[1].id
                                     console.log(dataFetches)
 
                     })
@@ -294,6 +294,10 @@ import Popup from '../Popup.vue';
     justify-content: center;
     align-content: center;
     align-items: center
+}
+
+.row {
+  display: inline-block
 }
 
 </style>

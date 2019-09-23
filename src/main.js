@@ -10,6 +10,9 @@ import SuiVue from 'semantic-ui-vue';
 
 /* ... */
 
+import JwPagination from 'jw-vue-pagination';
+Vue.component('jw-pagination', JwPagination);
+
 Vue.use(SuiVue);
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
