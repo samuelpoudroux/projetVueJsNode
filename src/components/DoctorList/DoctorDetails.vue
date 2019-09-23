@@ -11,20 +11,33 @@
   <p>
     <b>Specialité:</b> {{ specialityData.label }}
   </p>
+
+  <p v-on:click="showPopupC" class="btn btn-primary">Modifier</p>
+
+  <div v-if="showPopup ==true">
+    <DoctorPopupModification :id="id"/>
+  </div>
+
   </div>
 
 </template>
 
 <script>
 import Fetch from '../classes/Fetch.js';
+import DoctorPopupModification from './DoctorPopupModification.vue'
 export default {
   name: 'DoctorDetails',
+
+  components:{
+   DoctorPopupModification, 
+  },
 
   data(){
         return {
              physician: undefined,
              addressData: undefined,
              specialityData: undefined,
+             showPopup:false,
         }
   },
     
@@ -59,7 +72,13 @@ export default {
 
                     })
             })
-    }
+    },
+
+     showPopupC(){
+     console.log("showPopup")
+     this.showPopup = true
+   },
+
    },
 
     mounted(){

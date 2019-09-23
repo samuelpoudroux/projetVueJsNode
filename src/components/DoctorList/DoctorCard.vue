@@ -5,6 +5,7 @@
         <h5 class="card-title">Medecin numéro {{ physician.id}}</h5>
         <p v-if="isLoaded === false" class="card-text">{{ physician.firstName}} {{ physician.lastName}} </p>
         <p v-on:click="goDetailCard" class="btn btn-primary">Details</p>
+       <p v-on:click="deleteCard" class="btn btn-danger">Supprimer</p>
       </div>
     </div>
 </template>
@@ -29,17 +30,22 @@ export default {
     },   
 
    methods:{
-   getPhysician(){
-       Fetch.get("http://localhost:3000/physicians/" + this.id )
+       getPhysician(){
+      Fetch.get("http://localhost:3000/physicians/" + this.id )
        .then(data => {
            this.physician = data,
-this.isLoaded= false
+        this.isLoaded= false
        })
     },
-
       goDetailCard(){
-      this.$router.push({ name: 'doctorDetails', params: {id: this.id }})
+        this.$router.push({ name: 'doctorDetails', params: {id: this.id }})
+    },
 
+    deleteCard(){
+      Fetch.delete("http://localhost:3000/physicians/" + this.id )
+      .then(deleteData => {
+        this.$emit('showPopup', true)
+      })
     }
    },
    
