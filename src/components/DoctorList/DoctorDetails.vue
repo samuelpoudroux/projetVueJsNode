@@ -9,8 +9,11 @@
           <p>
             <b>Adresse:</b>{{ addressData.door }} {{ addressData.street }} {{ addressData.city }} {{ addressData.country }}
           </p>
-          <p>
+          <p v-if="specialityData !== undefined">
             <b>Specialité:</b> {{ specialityData.label }}
+          </p>
+          <p v-else>
+            <b>Specialité:</b> 
           </p>
 
           <p v-on:click="showPopupC" class="btn btn-primary">Modifier</p>
@@ -18,7 +21,7 @@
 
       <div v-if="showPopup ==true" >
       <div class="col-md-12  flexCenter">
-                     <h1 >Modifier le docteur </h1>
+                <h1 >Modifier le docteur </h1>
 
       </div>
         <DoctorPopupModification :id="id"/>
@@ -60,14 +63,17 @@ export default {
            console.log(data)
            var fetches = []
             fetches.push(fetch("http://localhost:3000/addresses/" + data.addressId))
-            fetches.push(fetch("http://localhost:3000/specialities/" + data.specialityId))
+
+            if(data.specialityId !== null){
+             fetches.push(fetch("http://localhost:3000/specialities/" + data.specialityId))
+            }
 
             Promise.all(fetches)
             .then((results) => {
                 var jsons = [];
                 results.forEach(function (item) {
                     if (item.ok) {
-                        jsons.push(item.json());
+                         jsons.push(item.text());
                     } else {
                         throw new Error("An error occurred while trying to fetch the data.");
                     }
@@ -75,13 +81,22 @@ export default {
                 return Promise.all(jsons);
             })
             .then(dataFetches => {
+                let dataTreated = []
+                 dataFetches.forEach(e => {
+                            if (e.length > 0) {
+                                dataTreated.push(JSON.parse(e))
+                            } else {
+                                dataTreated.push(null)
+                            }
+
+                            console.log(dataTreated)
                        this.physician=data,
-                         this.addressData=dataFetches[0],
-                            this.specialityData=dataFetches[1]
-                                    console.log(dataFetches)
+                         this.addressData=dataTreated[0] ? dataTreated[0] : undefined,
+                            this.specialityData=dataTreated[1] ? dataTreated[1] : undefined
 
                     })
             })
+       })
     },
 
      showPopupC(){

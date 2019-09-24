@@ -1,96 +1,51 @@
 
 <template>
-  <div>
+    <div>
         <div v-if="showPopup === true ">
-      <Popup text="Votre medecin à bien été modifié" />
-      </div>
-     <b-form class='center' @submit="onSubmit" @reset="onReset">
-       <b-form-group class='form'
-        id="input-group-1"
-        label="Nom:"
-        label-for="input-1"
-        description=""
-      >
-      <div v-if="showPopup === true ">
-      <Popup text="Votre medecin à bien été créé" />
-      </div>
-        <b-form-input
-          id="input-1"
-          v-model="physicianData.lastName"
-          type=""
-          required
-          placeholder="Enter Nom"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group class='form' id="input-group-2" label="Prénom" label-for="input-2">
-        <b-form-input
-          id="input-2"
-        required
-        v-model="physicianData.firstName"
-          placeholder="Prénom"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group class='form' id="input-group-3" label="Age:" label-for="input-3">
-       <b-form-input
-        v-model="physicianData.age"
-          id="input-2"
-          placeholder="Age"
-        ></b-form-input>
-      </b-form-group>
-
-        <b-form-group class='form' id="input-group-3" label="Rue:" label-for="input-3">
-       <b-form-input
-                 required
-        v-model="addressData.street"
-          id="input-2"
-          placeholder="Rue"
-        ></b-form-input>
-      </b-form-group>
-      
-        <b-form-group class='form' id="input-group-3" label="Ville:" label-for="input-3">
-       <b-form-input
-                 required
-        v-model="addressData.city"
-          id="input-2"
-          placeholder="Ville"
-        ></b-form-input>
-      </b-form-group>
-
-        <b-form-group class='form' id="input-group-3" label="Pays:" label-for="input-3">
-       <b-form-input
-                 v-model="addressData.country"
-                required
-          id="input-2"
-          placeholder="Pays"
-        ></b-form-input>
-      </b-form-group>
-
-        <b-form-group class='form' id="input-group-3" label="Numero:" label-for="input-3">
-       <b-form-input
-          required
-        v-model="addressData.door"
-          id="input-2"
-          placeholder="Numero"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group class='form row' id="input-group-3" label="specialité:"  label-for="input-3">
-        <span></span>
-        <b-form-select
-          id="input-3"
-          v-model="form.specialityId"
-          :options="specialities"
-        ></b-form-select>
-      </b-form-group>
-
-      <b class='row'>
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
-      </b>
-    </b-form>
-  </div>
+            <Popup text="Votre medecin à bien été modifié" :physicianAltered="true" />
+        </div>
+        <b-form class='center' @submit="onSubmit" @reset="onReset">
+            <b-form-group class='form' id="input-group-1" label="Nom:" label-for="input-1" description="">
+                <div v-if="showPopup === true ">
+                </div>
+                <b-form-input id="input-1" v-model="physicianData.lastName" type=""  placeholder="Enter Nom"></b-form-input>
+            </b-form-group>
+    
+            <b-form-group class='form' id="input-group-2" label="Prénom" label-for="input-2">
+                <b-form-input id="input-2"  data-name"firstName"  v-model="physicianData.firstName" placeholder="Prénom"></b-form-input>
+            </b-form-group>
+    
+            <b-form-group class='form' id="input-group-3" label="Age:" label-for="input-3">
+                <b-form-input v-model="physicianData.age"  data-name"age"  id="input-2" placeholder="Age"></b-form-input>
+            </b-form-group>
+    
+            <b-form-group class='form' id="input-group-3" label="Rue:" label-for="input-3">
+                <b-form-input  data-name"street"  v-model="addressData.street" id="input-2" placeholder="Rue"></b-form-input>
+            </b-form-group>
+    
+            <b-form-group class='form' id="input-group-3" label="Ville:" label-for="input-3">
+                <b-form-input  data-name"city"  v-model="addressData.city" id="input-2" placeholder="Ville"></b-form-input>
+            </b-form-group>
+    
+            <b-form-group class='form' id="input-group-3" label="Pays:" label-for="input-3">
+                <b-form-input v-model="addressData.country"  data-name"country"  id="input-2" placeholder="Pays"></b-form-input>
+            </b-form-group>
+    
+            <b-form-group class='form' id="input-group-3" label="Numero:" label-for="input-3">
+                <b-form-input  data-name"door"  v-model="addressData.door" id="input-2" placeholder="Numero"></b-form-input>
+            </b-form-group>
+    
+            <b-form-group class='form row' id="input-group-3" label="specialité:" label-for="input-3">
+                <span></span>
+                <b-form-select  id="input-3" v-model="form.specialityId" :options="specialities"></b-form-select>
+            </b-form-group>
+    
+            <b class='row'>
+                      <b-button type="submit" variant="primary">Submit</b-button>
+                      <b-button type="reset" variant="danger">Reset</b-button>
+                      </b>
+        </b-form>
+    </div>
 </template>
 
 <script>
@@ -98,20 +53,20 @@ import Fetch from '../classes/Fetch.js';
 import Popup from '../Popup.vue';
 
 
-  export default {
-      name: "DoctorPopupCreation",
+export default {
+    name: "DoctorPopupCreation",
     data() {
-      return {
+        return {
             form: {
-                specialityId: "",
-                checked:[]
+                specialityId: null,
+                checked: []
             },
-           
-            physicianData:{
+
+            physicianData: {
                 firstName: "",
                 lastName: "",
                 age: null,
-                addressId:""
+                addressId: ""
             },
             addressData: {
                 street: "",
@@ -120,175 +75,152 @@ import Popup from '../Popup.vue';
                 door: "",
             },
 
-             physician: undefined,
-             addressData: undefined,
-             specialityData: undefined,
+           
+
+            physician: undefined,
+            addressData: undefined,
+            specialityData: undefined,
 
             specialities: undefined,
 
-            show:true,
-            showPopup:false,
-      }
+            show: true,
+            showPopup: false,
+        }
     },
 
-    components : {
-      Popup,
+    components: {
+        Popup,
     },
 
-    props : [
+    props: [
         "id"
     ],
 
     methods: {
-      onSubmit(evt) {
-        evt.preventDefault()
-        this.postPhysician()
-      },
+        onSubmit(evt) {
+            evt.preventDefault()
+            this.postPhysician()
+        },
 
-      postPhysician(){
-          let addressBody = {
-               street: this.addressData.street,
+        postPhysician() {
+            let addressBody = {
+                street: this.addressData.street,
                 city: this.addressData.city,
                 country: this.addressData.country,
                 door: this.addressData.door
-          }
+            }
 
-          let physicianBody = {
+            let physicianBody = {
                 firstName: this.physicianData.firstName,
                 lastName: this.physicianData.lastName,
                 age: this.physicianData.age,
-                addressId:"",
+                addressId: "",
                 specialityId: this.form.specialityId
-        }
+            }
 
-        Fetch.put('http://localhost:3000/addresses/' + this.addressData.id, addressBody)
-        .then(addressData=> {
-          console.log(addressData)
-            physicianBody.addressId = addressData.id
-            let physicianData = this.physicianData
-            Fetch.put('http://localhost:3000/physicians/' + this.physicianData.id, physicianBody)
-            .then(data => {
-            this.showPopup = true
-            })
-        })
+            Fetch.put('http://localhost:3000/addresses/' + this.addressData.id, addressBody)
+                .then(addressData => {
+                    console.log(addressData)
+                    physicianBody.addressId = addressData.id
+                    let physicianData = this.physicianData
+                    Fetch.put('http://localhost:3000/physicians/' + this.physicianData.id, physicianBody)
+                        .then(data => {
+                            this.showPopup = true
+                        })
+                })
 
-               
+
         },
 
-    
-     
-     
-     getSpecialities(){
-       var options = [{ text: 'Select One', value: null, }]; 
-        let option
-        Fetch.get("http://localhost:3000/specialities")
-        .then(speciality => {
-          speciality.forEach(data => {
-            option = {}
-            option.text = data.label
-            option.value = data.id,
-            options.push(option)
-          })
-          this.specialities = options
-        })
-      },
 
-      
 
-     onReset(evt) {
-        evt.preventDefault()
-        console.log("aa")
-        // Reset our form values
-        this.physicianData.firstName = ''
-        this.physicianData.lastName= ''
-        this.physicianData.age = ''
-        this.addressData.street = ''
-        this.addressData.city = ''
-        this.addressData.country = ''
-        this.addressData.door = ''
-        // Trick to reset/clear native browser form validation state
-          this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
-        
-      },
 
-      getPhysicianData(){
-       Fetch.get("http://localhost:3000/physicians/" + this.id)
-       .then(data => {
-           console.log(data)
-           var fetches = []
-            fetches.push(fetch("http://localhost:3000/addresses/" + data.addressId))
-            fetches.push(fetch("http://localhost:3000/specialities/" + data.specialityId))
-
-            Promise.all(fetches)
-            .then((results) => {
-                var jsons = [];
-                results.forEach(function (item) {
-                    if (item.ok) {
-                        jsons.push(item.json());
-                    } else {
-                        throw new Error("An error occurred while trying to fetch the data.");
-                    }
-                })
-                return Promise.all(jsons);
-            })
-            .then(dataFetches => {
-                       this.physician=data,
-                         this.addressData=dataFetches[0],
-                            this.specialityData=dataFetches[1]
-                            this.specialityId=dataFetches[1].id
-                                    console.log(dataFetches)
-
+        getSpecialities() {
+            var options = [{ text: 'Select One', value: null, }];
+            let option
+            Fetch.get("http://localhost:3000/specialities")
+                .then(speciality => {
+                    speciality.forEach(data => {
+                        option = {}
+                        option.text = data.label
+                        option.value = data.id,
+                            options.push(option)
                     })
+                    this.specialities = options
+                })
+        },
+
+     
+
+
+
+        onReset(evt) {
+            evt.preventDefault()
+            console.log("aa")
+            // Reset our form values
+            this.physicianData.firstName = ''
+            this.physicianData.lastName = ''
+            this.physicianData.age = ''
+            this.addressData.street = ''
+            this.addressData.city = ''
+            this.addressData.country = ''
+            this.addressData.door = ''
+            // Trick to reset/clear native browser form validation state
+            this.show = false
+            this.$nextTick(() => {
+                this.show = true
             })
+
+        },
+
+        getPhysicianData() {
+            Fetch.get("http://localhost:3000/physicians/" + this.id)
+                .then(data => {
+                    console.log(data)
+                    var fetches = []
+                    fetches.push(fetch("http://localhost:3000/addresses/" + data.addressId))
+                    if (data.specialityId !== null) {
+                        fetches.push(fetch("http://localhost:3000/specialities/" + data.specialityId))
+                    }
+
+                    Promise.all(fetches)
+                        .then((results) => {
+                            var jsons = [];
+                            results.forEach(function(item) {
+                                if (item.ok) {
+                                    jsons.push(item.json());
+                                } else {
+                                    throw new Error("An error occurred while trying to fetch the data.");
+                                }
+                            })
+                            return Promise.all(jsons);
+                        })
+                        .then(dataFetches => {
+                            this.physicianData = data,
+                                this.addressData = dataFetches[0],
+                                this.specialityData = dataFetches[1]
+                            this.specialityId = dataFetches[1].id
+                            console.log(dataFetches)
+
+                        })
+                })
+       
+        }
     },
 
-     getPhysicianData(){
-       Fetch.get("http://localhost:3000/physicians/" + this.id)
-       .then(data => {
-           var fetches = []
-            fetches.push(fetch("http://localhost:3000/addresses/" + data.addressId))
-            fetches.push(fetch("http://localhost:3000/specialities/" + data.specialityId))
-
-            Promise.all(fetches)
-            .then((results) => {
-                var jsons = [];
-                results.forEach(function (item) {
-                    if (item.ok) {
-                        jsons.push(item.json());
-                    } else {
-                        throw new Error("An error occurred while trying to fetch the data.");
-                    }
-                })
-                return Promise.all(jsons);
-            })
-            .then(dataFetches => {
-                console.log(dataFetches[1])
-                       this.physicianData=data,
-                         this.addressData=dataFetches[0],
-                            this.specialityData=dataFetches[1]
-
-                    })
-            })
+    mounted() {
+        this.getPhysicianData()
+        this.getSpecialities()
     }
-   },
-
-    mounted(){
-      this.getPhysicianData()
-      this.getSpecialities()
-   }  
 }
 </script>
 
 <style scoped>
-
-.form{
+.form {
     width: 65%;
 }
 
-.center{
+.center {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -297,7 +229,6 @@ import Popup from '../Popup.vue';
 }
 
 .row {
-  display: inline-block
+    display: inline-block
 }
-
 </style>

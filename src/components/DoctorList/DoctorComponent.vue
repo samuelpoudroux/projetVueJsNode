@@ -1,15 +1,16 @@
  
- <template>
-        <b class="bv-example-row">
-              <div class='mt-3 center'>
-                <b-col md='7' sm='12' class='doctorList'>
-                <DoctorList/>
-                </b-col>
-                <b-col md='3' sm='12' class='doctorForm border-style'>
-                <DoctorPopupCreation/>
-                </b-col>
-              </div>
-        </b>
+<template>
+    <b class="bv-example-row">
+            <yan-progress :total="100" :done="done" :modify="30" />
+                  <div class='mt-3 center'>
+                    <b-col md='7' sm='12' class='doctorList'>
+                    <DoctorList/>
+                    </b-col>
+                    <b-col md='3' sm='12' class='doctorForm border-style'>
+                    <DoctorPopupCreation @updateProgressBar=" updateBarProgess"/>
+                    </b-col>
+                  </div>
+            </b>
 </template>
 
 <script>
@@ -17,52 +18,51 @@ import DoctorPopupCreation from './DoctorPopupCreation.vue'
 import DoctorList from './DocteurList.vue'
 
 export default {
-  name: 'DoctorComponent',
-    
-  components : {
-      DoctorPopupCreation,DoctorList
-    },   
 
-  methods:{
-
+  data (){
+    return {
+      done:0
+    }
   },
-} 
+    name: 'DoctorComponent',
 
+    components: {
+        DoctorPopupCreation,
+        DoctorList
+    },
+
+    methods: {
+        updateBarProgess(done) {
+          this.done = done
+        }
+    },
+}
 </script>
 
 
 <style scoped>
-
-.container-fluid{
-  display: flex;
-  flex-direction: row;
-  background: blue;
+.container-fluid {
+    display: flex;
+    flex-direction: row;
+    background: blue;
 }
 
-.doctorForm{
+.doctorForm {}
 
+.doctorList {}
 
+.center {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1%;
+    justify-content: space-between
 }
-
-.doctorList{
-
-
-}
-
-.center{
-  display: flex;
-  flex-flow: row wrap;
-padding: 1%;
-  justify-content: space-between
-}
-
 
 .border-style {
-  border-radius: 57px 54px 54px 54px;
--moz-border-radius: 57px 54px 54px 54px;
--webkit-border-radius: 57px 54px 54px 54px;
-border: 7px solid #49484869;
-padding: 1%
+    border-radius: 57px 54px 54px 54px;
+    -moz-border-radius: 57px 54px 54px 54px;
+    -webkit-border-radius: 57px 54px 54px 54px;
+    border: 7px solid #49484869;
+    padding: 1%
 }
-
 </style>

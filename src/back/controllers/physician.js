@@ -25,7 +25,7 @@ exports.physician_create = (req, res) => {
         lastName: req.body.lastName,
         age: req.body.age,
         addressId: req.body.addressId,
-        specialityId: req.body.specialityId
+        specialityId: req.body.specialityId || null
     }).then(data => {
         res.send(data);
     }).catch(err => {
@@ -63,13 +63,28 @@ exports.physician_update = (req, res) => {
             message: "Note content can not be empty"
         });
     }
-    Physician.update({
+
+    let body
+    if (req.body.specialityId !== null) {
+      body = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             age: req.body.age,
             addressId: req.body.addressId,
             specialityId: req.body.specialityId
-        }, {
+        }
+
+    } else {
+        body = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            age: req.body.age,
+            addressId: req.body.addressId
+        }
+    }
+
+    Physician.update(
+         body, {
             where: {
                 id: req.params.physicianId
             }

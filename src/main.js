@@ -7,6 +7,8 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import SuiVue from 'semantic-ui-vue';
+import YanProgress from 'yan-progress';
+
 
 /* ... */
 
@@ -14,7 +16,9 @@ import JwPagination from 'jw-vue-pagination';
 Vue.component('jw-pagination', JwPagination);
 
 Vue.use(SuiVue);
-Vue.use(BootstrapVue)
+Vue.use(BootstrapVue);
+Vue.use(YanProgress);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

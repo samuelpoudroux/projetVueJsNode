@@ -34,25 +34,25 @@ let router = new Router({
             path: '/doctorList',
             name: 'doctorList',
             component: DoctorList,
-            meta: {
-                requiresAuth: true
-            }
+            // meta: {
+            //     requiresAuth: true
+            // }
         },
         {
             path: '/myProfile',
             name: 'profile',
             component: MyProfile,
-            meta: {
-                requiresAuth: true
-            }
+            // meta: {
+            //     requiresAuth: true
+            // }
         },
         {
             path: '/home',
             name: 'home',
             component: Test,
-            meta: {
-                requiresAuth: true
-            }
+            // meta: {
+            //     requiresAuth: true
+            // }
 
 
         },
@@ -61,9 +61,9 @@ let router = new Router({
             path: '/doctorDetails',
             name: 'doctorDetails',
             component: DoctorDetails,
-            meta: {
-                requiresAuth: true
-            },
+            // meta: {
+            //     requiresAuth: true
+            // },
             props: true
         },
     ]
