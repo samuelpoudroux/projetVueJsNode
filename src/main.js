@@ -10,10 +10,15 @@ import SuiVue from 'semantic-ui-vue';
 import YanProgress from 'yan-progress';
 
 
+import VeeValidate from "vee-validate";
+Vue.use(VeeValidate);
+
+
 /* ... */
 
 import JwPagination from 'jw-vue-pagination';
 Vue.component('jw-pagination', JwPagination);
+
 
 Vue.use(SuiVue);
 Vue.use(BootstrapVue);

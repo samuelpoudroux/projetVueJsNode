@@ -6,33 +6,31 @@
         </div>
         <b-form class='center' @submit="onSubmit" @reset="onReset">
             <b-form-group class='form' id="input-group-1" label="Nom:" label-for="input-1" description="">
-                <div v-if="showPopup === true ">
-                </div>
-                <b-form-input id="input-1" v-model="physicianData.lastName" type=""  placeholder="Enter Nom"></b-form-input>
+                <b-form-input id="input-1" v-model="physicianData.lastName" placeholder="Enter Nom"></b-form-input>
             </b-form-group>
     
-            <b-form-group class='form' id="input-group-2" label="Prénom" label-for="input-2">
-                <b-form-input id="input-2"  data-name"firstName"  v-model="physicianData.firstName" placeholder="Prénom"></b-form-input>
+            <b-form-group class='form' id="input-group-2" label="Prénom:" label-for="input-2">
+                <b-form-input id="input-2"   v-model="physicianData.firstName" placeholder="Prénom"></b-form-input>
             </b-form-group>
     
             <b-form-group class='form' id="input-group-3" label="Age:" label-for="input-3">
-                <b-form-input v-model="physicianData.age"  data-name"age"  id="input-2" placeholder="Age"></b-form-input>
+                <b-form-input v-model="physicianData.age"   id="input-2" placeholder="Age"></b-form-input>
             </b-form-group>
     
             <b-form-group class='form' id="input-group-3" label="Rue:" label-for="input-3">
-                <b-form-input  data-name"street"  v-model="addressData.street" id="input-2" placeholder="Rue"></b-form-input>
+                <b-form-input    v-model="addressData.street" id="input-2" placeholder="Rue"></b-form-input>
             </b-form-group>
     
             <b-form-group class='form' id="input-group-3" label="Ville:" label-for="input-3">
-                <b-form-input  data-name"city"  v-model="addressData.city" id="input-2" placeholder="Ville"></b-form-input>
+                <b-form-input    v-model="addressData.city" id="input-2" placeholder="Ville"></b-form-input>
             </b-form-group>
     
             <b-form-group class='form' id="input-group-3" label="Pays:" label-for="input-3">
-                <b-form-input v-model="addressData.country"  data-name"country"  id="input-2" placeholder="Pays"></b-form-input>
+                <b-form-input v-model="addressData.country"  id="input-2" placeholder="Pays"></b-form-input>
             </b-form-group>
     
             <b-form-group class='form' id="input-group-3" label="Numero:" label-for="input-3">
-                <b-form-input  data-name"door"  v-model="addressData.door" id="input-2" placeholder="Numero"></b-form-input>
+                <b-form-input v-model="addressData.door" id="input-2" placeholder="Numero"></b-form-input>
             </b-form-group>
     
             <b-form-group class='form row' id="input-group-3" label="specialité:" label-for="input-3">
@@ -43,7 +41,7 @@
             <b class='row'>
                       <b-button type="submit" variant="primary">Submit</b-button>
                       <b-button type="reset" variant="danger">Reset</b-button>
-                      </b>
+            </b>
         </b-form>
     </div>
 </template>

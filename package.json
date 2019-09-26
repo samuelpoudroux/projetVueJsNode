@@ -29,6 +29,7 @@
         "semantic-ui-vue": "^0.8.1",
         "sequelize": "^5.18.4",
         "sqlite3": "^4.1.0",
+        "vee-validate": "^2.1.0-beta.7",
         "vue": "^2.5.2",
         "vue-router": "^3.0.1",
         "vue-sidebar-menu": "^4.2.1",

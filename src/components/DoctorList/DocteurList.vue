@@ -3,7 +3,6 @@
     <div class="card text flexJustify ">
       <div v-if="showPopup === true ">
                 <Popup text="Votre medecin à bien été supprimé" />
-
       </div>
         <h3 class="card-header">Docteurs</h3>
         <div class="card-body flexWrap p-3 spaceBetween">
@@ -101,7 +100,7 @@ padding: 1%
 }
 
 .flexJustify{
-  min-height: 85%;
+    height: 100%;
 }
 
 .spaceBetween{

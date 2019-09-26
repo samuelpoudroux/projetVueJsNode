@@ -1,50 +1,64 @@
 
 <template>
-    <div>
-        <b-form class='center' @submit="onSubmit" @reset="onReset">
-            <h3 class="mt-3">Ajouter un medecin</h3>
-            <b-form-group class='form' id="input-group-1" label="Nom:" label-for="input-1" description="">
-                <div v-if="showPopup === true ">
-                    <Popup text="Votre medecin à bien été créé" />
+    <div class="card">
+        <h4 class=" card-header">Ajouter un medecin</h4>
+        <b-form class='' @submit="onSubmit" @reset="onReset">
+            <div v-if="showPopup === true ">
+                <Popup text="Votre medecin à bien été créé" />
+            </div>
+
+              
+    
+            <div class='container-fluid '>
+                <div class='row pt-5 '>
+                    <b-form-group class='form col-md-6' id="input-group-1" label="Nom:" label-for="input-1" description="">
+                        <b-form-input id="input-1" v-model="physicianData.lastName" type="" required v-on:blur="checkCompleted" data-name="lastName" placeholder="Nom"></b-form-input>
+                    </b-form-group>
+    
+                    <b-form-group class='form col-md-6' id="input-group-2" label="Prénom" label-for="input-2">
+                        <b-form-input id="input-2" required v-on:blur="checkCompleted" data-name="firstName" v-model="physicianData.firstName" placeholder="Prénom"></b-form-input>
+                    </b-form-group>
                 </div>
-                <b-form-input id="input-1" v-model="physicianData.lastName" type="" required v-on:blur="requiredInput"  data-name="lastName" placeholder="Enter Nom"></b-form-input>
-            </b-form-group>
     
-            <b-form-group class='form' id="input-group-2" label="Prénom" label-for="input-2">
-                <b-form-input id="input-2" required v-on:blur="requiredInput" data-name="firstName" v-model="physicianData.firstName" placeholder="Prénom"></b-form-input>
-            </b-form-group>
+                <div class='row pt-5 '>
+                    <b-form-group class='form col-md-6' id="input-group-3" label="Age:" label-for="input-3">
+                        <b-form-input v-model="physicianData.age" required v-on:blur="checkCompleted" data-name="age" id="input-2" placeholder="Age"></b-form-input>
+                    </b-form-group>
     
-            <b-form-group class='form' id="input-group-3" label="Age:" label-for="input-3">
-                <b-form-input v-model="physicianData.age" required v-on:blur="requiredInput" data-name="age" id="input-2" placeholder="Age"></b-form-input>
-            </b-form-group>
+                    <b-form-group class='form col-md-6' id="input-group-3" label="Rue:" label-for="input-3">
+                        <b-form-input required v-on:blur="checkCompleted" data-name="street" v-model="physicianData.street" id="input-2" placeholder="Rue"></b-form-input>
+                    </b-form-group>
+                </div>
     
-            <b-form-group class='form' id="input-group-3" label="Rue:" label-for="input-3">
-                <b-form-input required v-on:blur="requiredInput" data-name="street" v-model="physicianData.street" id="input-2" placeholder="Rue"></b-form-input>
-            </b-form-group>
     
-            <b-form-group class='form' id="input-group-3" label="Ville:" label-for="input-3">
-                <b-form-input required v-on:blur="requiredInput" data-name="city" v-model="physicianData.city" id="input-2" placeholder="Ville"></b-form-input>
-            </b-form-group>
+                <div class='row pt-5 '>
+                    <b-form-group class='form col-md-6' id="input-group-3" label="Ville:" label-for="input-3">
+                        <b-form-input required v-on:blur="checkCompleted" data-name="city" v-model="physicianData.city" id="input-2" placeholder="Ville"></b-form-input>
+                    </b-form-group>
     
-            <b-form-group class='form' id="input-group-3" label="Pays:" label-for="input-3">
-                <b-form-input v-model="physicianData.country" required v-on:blur="requiredInput" data-name="country" id="input-2" placeholder="Pays"></b-form-input>
-            </b-form-group>
+                    <b-form-group class='form col-md-6' id="input-group-3" label="Pays:" label-for="input-3">
+                        <b-form-input v-model="physicianData.country" required v-on:blur="checkCompleted" data-name="country" id="input-2" placeholder="Pays"></b-form-input>
+                    </b-form-group>
+                </div>
     
-            <b-form-group class='form' id="input-group-3" label="Numero:" label-for="input-3">
-                <b-form-input required v-on:blur="requiredInput" data-name="door" v-model="physicianData.door" id="input-2" placeholder="Numero"></b-form-input>
-            </b-form-group>
+                <div class='row pt-5 '>
+                    <b-form-group class='form col-md-6' id="input-group-3" label="Numero:" label-for="input-3">
+                        <b-form-input required v-on:blur="checkCompleted" data-name="door" v-model="physicianData.door" id="input-2" placeholder="Numero"></b-form-input>
+                    </b-form-group>
     
-            <b-form-group class='form' id="input-group-3" label="specialité:" label-for="input-3">
-                <b-form-select id="input-3" v-model="physicianData.specialityId" :options='specialities'></b-form-select>
-            </b-form-group>
-    
-            <b class='row'>
-                                          <b-button type="submit" variant="primary">Submit</b-button>
-                                          <b-button type="reset" variant="danger">Reset</b-button>
-                                          </b>
+                    <b-form-group class='form col-md-6' id="input-group-3" label="specialité:" label-for="input-3">
+                        <b-form-select id="input-3" v-model="physicianData.specialityId" :options='specialities'></b-form-select>
+                    </b-form-group>
+                </div>
+                
+            </div>
+            <div class="card-footer buttonContainer ">
+                <b-button type="submit" variant="primary">Submit</b-button>
+                <b-button type="reset" variant="danger">Reset</b-button>
+            </div>
         </b-form>
     
-        <button v-on:click="updateProgessBar">aa</button>
+    
     </div>
 </template>
 
@@ -69,17 +83,7 @@ export default {
                 specialityId: null
             },
 
-            checks: {
-                firstName: null,
-                lastName: null,
-                age: null,
-                addressId: null,
-                street: null,
-                city: null,
-                country: null,
-                door: null,
-                specialityId: null
-            },
+            filledInputs: 0,
 
             specialities: {},
             show: true,
@@ -166,21 +170,30 @@ export default {
 
         },
 
-        requiredInput(event) {
-            if (this.checks[event.target.dataset.name] !== this.physicianData[event.target.dataset.name]) {
-                this.checks[event.target.dataset.name] = event.target.value
-                this.done += 14.28
-                this.updateProgessBar(event)
-                console.log("firstCONDITION")
-            } else if (this.checks[event.target.dataset.name] === this.physicianData[event.target.dataset.name]) {
-                this.checks[event.target.dataset.name] = "",
-                console.log('second')
-            } else  {
-                console.log("LL")
-                  this.done -= 14.28,
-                    this.updateProgessBar(event)
-            }
+        checkCompleted: function() {
+            // find all inputs
+            var totalInputs = document.querySelectorAll('input').length
+            var filledInputs = 0;
+            document.querySelectorAll('input').forEach(input => {
+                if (input.value !== "") {
+                    filledInputs++;
+                }
+            });
+            // do the math
+            var find = filledInputs / totalInputs * 100;
+            // update local variable in Vue data
+            this.done = Math.round(find);
+            this.updateProgessBar()
         },
+
+           handleSubmit(e) {
+      this.submitted = true;
+      this.$validator.validate().then(valid => {
+        if (valid) {
+          alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));
+        }
+      });
+    }
 
     },
 
@@ -202,5 +215,29 @@ export default {
     justify-content: center;
     align-content: center;
     align-items: center
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+input,
+select {
+    border: none;
+    border-bottom: 2px solid grey;
+}
+
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }
 </style>
