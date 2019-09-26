@@ -4,19 +4,18 @@
       <div v-if="showPopup === true ">
                 <Popup text="Votre medecin à bien été supprimé" />
       </div>
-        <h3 class="card-header">Docteurs</h3>
+      <div class="card-header center">
+       <h3 >Docteurs</h3>
+       <input placeholder="rechercher"  @input="handleChange" />
+      </div>
+       
         <div class="card-body flexWrap p-3 spaceBetween">
-            <DoctorCard :id="item.id" v-for="item in pageOfItems" :key="item.id" />    
+            <DoctorCard :id="item.id" v-for="item in pageOfItems" :key="item.id" @showPopup="updateParent" />    
         </div>
         <div  v-if="isLoading === false" class="card-footer pb-0 pt-3">
             <jw-pagination :items="physicians" @changePage="onChangePage" :pageSize="6"></jw-pagination>
         </div>
     </div>
-</template>
-
-
-
- 
 </template>
 
 <script>
@@ -33,8 +32,7 @@ export default {
              physicians: undefined,
              showPopup:false,
             pageOfItems: [],
-            isLoading:true
-
+            isLoading:true,
         }
   },
     
@@ -44,15 +42,29 @@ export default {
 
   methods:{
    getAllPhysician(){
-       Fetch.get("http://localhost:3000/physicians/")
+        Fetch.get("http://localhost:3000/physicians/")
        .then(data => {
-           this.physicians = data
+           this.pageOfItems = data
            this.isLoading = false
        })
     },
+
      updateParent(showPopup) {
         this.showPopup = showPopup
     },
+
+    handleChange(e){
+      if(e.target.value === "") {
+       this.getAllPhysician()
+      } else {
+          Fetch.get("http://localhost:3000/physicians/name/" + e.target.value)
+          .then(data => {
+            this.isLoading = false,
+            this.pageOfItems = data
+       })
+      } 
+    }, 
+
     onChangePage(pageOfItems) {
             // update page of items
             this.pageOfItems = pageOfItems;
@@ -61,9 +73,7 @@ export default {
 
     mounted(){
        this.getAllPhysician()
-   }  ,
-
-   
+   }  , 
 } 
 
 </script>

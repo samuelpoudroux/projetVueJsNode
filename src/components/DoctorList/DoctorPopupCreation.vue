@@ -54,7 +54,7 @@
                     <b-form-group class='form col-md-6' id="input-group-1" label="rue:" label-for="input-1" description="">
                         <b-form-input id="input-1" v-model.trim="$v.street.$model" :class="{
                           'is-invalid' :$v.street.$error, 'is-valid' : !$v.street.$invalid }" type="text" v-on:blur="checkCompleted" name="street"  placeholder="Rue"></b-form-input>
-                          <b class="valid-feedback">Votre numéro de rue est valide</b>
+                          <b class="valid-feedback">Le nom est valide</b>
                         <b class="invalid-feedback">
                         <span v-if="!$v.street.required">Le nom de la rue est requis</span>
                         <span v-if="!$v.street.minLength">Le nom de la rue doit avoir au moins {{ $v.street.$params.minLength.min }} lettres</span>   
@@ -110,17 +110,6 @@ export default {
                 country: null,
                 door: null,
                 specialityId: null,
-
-            error : {
-                firstName: null,
-                lastName: null,
-                age: null,
-                addressId: null,
-                street: null,
-                city: null,
-                country: null,
-                door: null,
-            },
 
             filledInputs: 0,
 

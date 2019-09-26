@@ -1,4 +1,6 @@
 const Physician = require("../../../server/models/").Physician;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.physician_get = (req, res) => {
     Physician.findAll()
@@ -10,6 +12,20 @@ exports.physician_get = (req, res) => {
             });
         });
 }
+
+exports.physician_get_startingBy = (req, res) => {
+    Physician.findAll({
+        where: {
+            firstName: req.params.f
+        }
+
+    }).then(physicians => {
+        res.send(physicians)
+    })
+}
+
+
+
 
 // Create and Save a new physician
 exports.physician_create = (req, res) => {
@@ -66,7 +82,7 @@ exports.physician_update = (req, res) => {
 
     let body
     if (req.body.specialityId !== null) {
-      body = {
+        body = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             age: req.body.age,
@@ -84,11 +100,11 @@ exports.physician_update = (req, res) => {
     }
 
     Physician.update(
-         body, {
-            where: {
-                id: req.params.physicianId
-            }
-        }).then(result => {
+            body, {
+                where: {
+                    id: req.params.physicianId
+                }
+            }).then(result => {
             res.json(result)
         })
         .catch(err => {
