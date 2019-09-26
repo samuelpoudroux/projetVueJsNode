@@ -3,10 +3,10 @@
     <b class="bv-example-row">
             <yan-progress :total="100" :done="done" :modify="30" />
                   <div class='mt-3 center'>
-                    <b-col md='7' sm='12' class='doctorList'>
+                    <b-col md='6' sm='12' class='doctorList'>
                     <DoctorList/>
                     </b-col>
-                    <b-col md='3' sm='12' class='doctorForm border-style'>
+                    <b-col md='6' sm='12' class='doctorForm border-style'>
                     <DoctorPopupCreation @updateProgressBar=" updateBarProgess"/>
                     </b-col>
                   </div>
@@ -62,7 +62,5 @@ export default {
     border-radius: 57px 54px 54px 54px;
     -moz-border-radius: 57px 54px 54px 54px;
     -webkit-border-radius: 57px 54px 54px 54px;
-    border: 7px solid #49484869;
-    padding: 1%
 }
 </style>

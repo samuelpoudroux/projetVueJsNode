@@ -8,18 +8,15 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import SuiVue from 'semantic-ui-vue';
 import YanProgress from 'yan-progress';
+import Vuelidate from 'vuelidate'
 
-import * as VeeValidate from 'vee-validate';
-
-
-Vue.use(VeeValidate);
-
-
+Vue.use(Vuelidate)
 
 /* ... */
 
 import JwPagination from 'jw-vue-pagination';
 Vue.component('jw-pagination', JwPagination);
+
 
 Vue.use(SuiVue);
 Vue.use(BootstrapVue);

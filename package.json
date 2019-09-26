@@ -34,6 +34,7 @@
         "vue-joi-validation": "^1.0.9",
         "vue-router": "^3.0.1",
         "vue-sidebar-menu": "^4.2.1",
+        "vuelidate": "^0.7.4",
         "yan-progress": "^1.0.3"
     },
     "devDependencies": {
