@@ -9,6 +9,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import SuiVue from 'semantic-ui-vue';
 import YanProgress from 'yan-progress';
 
+import * as VeeValidate from 'vee-validate';
+
+
+Vue.use(VeeValidate);
+
+
 
 /* ... */
 
