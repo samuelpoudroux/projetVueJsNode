@@ -5,7 +5,10 @@ import Test from '../components/test'
 import DoctorList from '../components/DoctorList/DoctorComponent.vue'
 import MyProfile from '../components/MyProfile/MyProfile'
 import Auth from '@okta/okta-vue'
-import DoctorDetails from "../components/DoctorList/DoctorDetails.vue"
+import DoctorDetails from "../components/DoctorList/DoctorDetails.vue";
+import 'semantic-ui-css/semantic.min.css';
+
+
 
 
 

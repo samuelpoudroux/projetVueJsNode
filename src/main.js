@@ -8,7 +8,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import SuiVue from 'semantic-ui-vue';
 import YanProgress from 'yan-progress';
-import Vuelidate from 'vuelidate'
+import Vuelidate from 'vuelidate';
+
+
+
+/* ... */
+
 
 Vue.use(Vuelidate)
 

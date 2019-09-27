@@ -14,9 +14,12 @@ exports.physician_get = (req, res) => {
 }
 
 exports.physician_get_startingBy = (req, res) => {
+
     Physician.findAll({
         where: {
-            firstName: req.params.f
+            firstName: {
+                [Op.startsWith]: req.params.firstname
+            }
         }
 
     }).then(physicians => {
