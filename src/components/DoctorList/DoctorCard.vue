@@ -4,8 +4,8 @@
       <div class="card-body">
         <h5 class="card-title">Medecin numéro {{ physician.id}}</h5>
         <p v-if="isLoaded === false" class="card-text">{{ physician.firstName}} {{ physician.lastName}} </p>
-        <p v-on:click="goDetailCard" class="btn btn-primary">Details</p>
-       <p v-on:click="deleteCard" class="btn btn-danger">Supprimer</p>
+            <sui-button basic primary v-on:click="goDetailCard">Details</sui-button>
+    <sui-button  v-on:click="deleteCard" basic negative>Supprimer</sui-button>
       </div>
     </div>
 </template>

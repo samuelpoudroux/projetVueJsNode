@@ -6,7 +6,7 @@
       </div>
       <div class="card-header center">
        <h3 class='' >Docteurs</h3>
-       <input placeholder="rechercher"  @input="handleChange" />
+         <sui-input placeholder="Rechercher..." loading icon-position="right" v-model="search" />
       </div>
        
         <div class="card-body flexWrap p-3 spaceBetween">
@@ -39,6 +39,7 @@ export default {
              showPopup:false,
             pageOfItems: [],
             isLoading:true,
+            search:null,
         }
   },
     
@@ -59,11 +60,11 @@ export default {
         this.showPopup = showPopup
     },
 
-    handleChange(e){
-      if(e.target.value === "") {
+    handleChange(search){
+      if(this.search === "") {
        this.getAllPhysician()
       } else {
-          Fetch.get("http://localhost:3000/physicians/name/" + e.target.value)
+          Fetch.get("http://localhost:3000/physicians/name/" + search)
           .then(data => {
             this.isLoading = false,
             this.pageOfItems = data
@@ -74,12 +75,21 @@ export default {
     onChangePage(pageOfItems) {
             // update page of items
             this.pageOfItems = pageOfItems;
-        }
+    }
    },
+
+   
+   
 
     mounted(){
        this.getAllPhysician()
-   }  , 
+   }, 
+
+    watch: {
+  'search': function() {
+this.handleChange(this.search)
+ }
+    }
 } 
 
 </script>
@@ -128,6 +138,8 @@ input,
 select {
     border: none;
     border-bottom: 2px solid grey;
+    background: none;
+    
 }
 
 .loader{

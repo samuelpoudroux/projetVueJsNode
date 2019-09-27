@@ -84,8 +84,9 @@
            
         </b-form>
      <div class="card-footer buttonContainer ">
-                <b-button @click="onSubmit" type="submit" variant="primary">Submit</b-button>
-                <b-button @click="onReset" variant="danger">Reset</b-button>
+      <sui-button basic primary  @click="onSubmit">Soumettre</sui-button>
+    <sui-button  v-on:click="deleteCard" basic negative @click="onReset">Reset</sui-button>
+              
             </div>
     
     </div>
