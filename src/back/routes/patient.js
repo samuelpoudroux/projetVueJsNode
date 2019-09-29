@@ -5,6 +5,7 @@ var patient_controller = require('../controllers/patient');
 // GET all patients.
 router.get('/patients', patient_controller.patient_get);
 router.get('/patients/:patientId', patient_controller.patient_findOne);
+router.get('/patients/firstname/:firstname', patient_controller.patient_get_startingBy);
 router.post('/patients', patient_controller.patient_create);
 router.put('/patients', patient_controller.patient_update);
 router.put('/patients/:patientId', patient_controller.patient_update);

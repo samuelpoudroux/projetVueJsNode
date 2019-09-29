@@ -1,14 +1,14 @@
 
 <template>
     <div class="card">
-        <h4 class=" card-header text-center">Ajouter un medecin</h4>
+        <h4 class=" card-header text-center">Ajouter un Patient</h4>
         <b-form class='center'>
             <div v-if="showPopup === true ">
                 <Popup text="Votre medecin à bien été créé" />
             </div>
                 <div class='row p-3'>
                 <b-form-group class='form col-md-6' id="input-group-1" label="Nom:" label-for="input-1" description="">
-                        <b-form-input id="doctorInput" v-model.trim="$v.lastName.$model" :class="{
+                        <b-form-input id="patientInput" v-model.trim="$v.lastName.$model" :class="{
                           'is-invalid' :$v.lastName.$error, 'is-valid' : !$v.lastName.$invalid }" type="text" v-on:blur="checkCompleted" name="lastName"  placeholder="Nom"></b-form-input>
                           <b class="valid-feedback">Votre nom est valide</b>
                         <b class="invalid-feedback">
@@ -18,7 +18,7 @@
                         </b>
                     </b-form-group>
                     <b-form-group class='form col-md-6' id="input-group-1" label="Prénom:" label-for="input-1" description="">
-                        <b-form-input id="doctorInput" v-model.trim="$v.firstName.$model" :class="{
+                        <b-form-input id="patientInput" v-model.trim="$v.firstName.$model" :class="{
                           'is-invalid' :$v.firstName.$error, 'is-valid' : !$v.firstName.$invalid }" type="text" v-on:blur="checkCompleted" name="firstName"  placeholder="Prénom"></b-form-input>
                           <b class="valid-feedback">Votre prénom est valide</b>
                         <b class="invalid-feedback">
@@ -29,7 +29,7 @@
                     </b-form-group>
 
                      <b-form-group class='form col-md-6' id="input-group-1" label="Age:" label-for="input-1" description="">
-                        <b-form-input id="doctorInput" v-model.number.lazy="$v.age.$model" :class="{
+                        <b-form-input id="patientInput" v-model.number.lazy="$v.age.$model" :class="{
                           'is-invalid' :$v.age.$error, 'is-valid' : !$v.age.$invalid }" type="number" v-on:blur="checkCompleted" name="age"  placeholder="Age"></b-form-input>
                           <b class="valid-feedback">Votre age est valide</b>
                         <b class="invalid-feedback">
@@ -38,12 +38,9 @@
                         </b>
                     </b-form-group>
 
-                     <b-form-group class='form col-md-6' id="input-group-3" label="specialité:" label-for="input-3">
-                        <b-form-select id="input-3" v-model="specialityId" :options='specialities'></b-form-select>
-                    </b-form-group>
 
                      <b-form-group class='form col-md-6' id="input-group-1" label="N°:" label-for="input-1" description="">
-                        <b-form-input id="doctorInput" v-model.number.lazy="$v.door.$model" :class="{
+                        <b-form-input id="patientInput" v-model.number.lazy="$v.door.$model" :class="{
                           'is-invalid' :$v.door.$error, 'is-valid' : !$v.door.$invalid }" type="number" v-on:blur="checkCompleted" name="door"  placeholder="N°"></b-form-input>
                           <b class="valid-feedback">Votre numero de rue est valide</b>
                         <b class="invalid-feedback">
@@ -52,7 +49,7 @@
                     </b-form-group>
 
                     <b-form-group class='form col-md-6' id="input-group-1" label="rue:" label-for="input-1" description="">
-                        <b-form-input id="doctorInput" v-model.trim="$v.street.$model" :class="{
+                        <b-form-input id="patientInput" v-model.trim="$v.street.$model" :class="{
                           'is-invalid' :$v.street.$error, 'is-valid' : !$v.street.$invalid }" type="text" v-on:blur="checkCompleted" name="street"  placeholder="Rue"></b-form-input>
                           <b class="valid-feedback">Le nom est valide</b>
                         <b class="invalid-feedback">
@@ -62,7 +59,7 @@
                     </b-form-group>
 
                      <b-form-group class='form col-md-6' id="input-group-1" label="Ville:" label-for="input-1" description="">
-                        <b-form-input id="doctorInput" v-model.trim="$v.city.$model" :class="{
+                        <b-form-input id="patientInput" v-model.trim="$v.city.$model" :class="{
                           'is-invalid' :$v.city.$error, 'is-valid' : !$v.city.$invalid }" type="text" v-on:blur="checkCompleted" name="city"  placeholder="Ville"></b-form-input>
                           <b class="valid-feedback">La ville est valide</b>
                         <b class="invalid-feedback">
@@ -72,7 +69,7 @@
                     </b-form-group>
 
                       <b-form-group class='form col-md-6' id="input-group-1" label="pays:" label-for="input-1" description="">
-                        <b-form-input id="doctorInput" v-model.trim="$v.country.$model" :class="{
+                        <b-form-input id="patientInput" v-model.trim="$v.country.$model" :class="{
                           'is-invalid' :$v.country.$error, 'is-valid' : !$v.country.$invalid }" type="text" v-on:blur="checkCompleted" name="country"  placeholder="Pays"></b-form-input>
                           <b class="valid-feedback">Le pays est valide</b>
                         <b class="invalid-feedback">
@@ -93,13 +90,13 @@
 </template>
 
 <script>
-import Fetch from '../classes/Fetch.js';
-import Popup from '../Popup.vue';
+import Fetch from '../classes/Fetch';
+import Popup from '../Popup';
 import { required, minLength, maxLength,  between } from 'vuelidate/lib/validators'
 
 
 export default {
-    name: "DoctorPopupCreation",
+    name: "PatientPopupCreation",
     data() {
         return {
              firstName: null,
@@ -114,7 +111,6 @@ export default {
 
             filledInputs: 0,
 
-            specialities: {},
             show: true,
             showPopup: false,
             done: 0,
@@ -172,10 +168,10 @@ export default {
     methods: {
         onSubmit(evt) {
             evt.preventDefault()
-            this.postPhysician()
+            this.postpatient()
         },
 
-        postPhysician() {
+        postpatient() {
             let addressBody = {
                 street: this.street,
                 city: this.city,
@@ -183,7 +179,7 @@ export default {
                 door: this.door
             }
 
-            let physicianBody = {
+            let patientBody = {
                 firstName: this.firstName,
                 lastName: this.lastName,
                 age: this.age,
@@ -193,9 +189,8 @@ export default {
 
             Fetch.post('http://localhost:3000/addresses/', addressBody)
                 .then(addressData => {
-                    console.log(addressData)
-                    physicianBody.addressId = addressData.id
-                    Fetch.post('http://localhost:3000/physicians', physicianBody)
+                    patientBody.addressId = addressData.id
+                    Fetch.post('http://localhost:3000/patients', patientBody)
                         .then(data => {
                             this.showPopup = true
                         }).catch(error => {
@@ -212,22 +207,6 @@ export default {
             this.$emit('updateProgressBar', this.done)
         },
 
-        getSpecialities() {
-
-            var options = [{ text: 'Select One', value: null }];
-            let option
-            Fetch.get("http://localhost:3000/specialities")
-                .then(speciality => {
-                    speciality.forEach(data => {
-                        option = {}
-                        option.text = data.label
-                        option.value = data.id,
-                            options.push(option)
-                    })
-                    this.specialities = options
-                })
-        },
-
         onReset(evt) {
             evt.preventDefault()
             // Reset our form values
@@ -238,7 +217,7 @@ export default {
             this.city = ''
             this.country = ''
             this.door = ''
-            this.done = 0 
+            this.done = 0
             this.updateProgessBar()
             // Trick to reset/clear native browser form validation state
             this.show = false
@@ -250,9 +229,9 @@ export default {
 
         checkCompleted: function(e) {
             // find all inputs
-            var totalInputs = document.querySelectorAll('#doctorInput').length
+            var totalInputs = document.querySelectorAll('#patientInput').length
             var filledInputs = 0;
-            document.querySelectorAll('#doctorInput').forEach(input => {
+            document.querySelectorAll('#patientInput').forEach(input => {
                 if (input.value !== "") {
                     filledInputs++;
                 }
@@ -265,22 +244,7 @@ export default {
             this.checkForm(e)
         },
 
-         checkForm:function(e) {
-      if(this.physicianData[e.target.name])  {
-          this.error[e.target.name] = null;
-                    return true;
-      }
-      if(!this.physicianData[e.target.name]) {
-this.error[e.target.name] = `${e.target.name} is required`;
-      } 
-        e.preventDefault();
     }
-  },
-
-    mounted() {
-        this.getSpecialities()
-    },
-
 }
 </script>
 

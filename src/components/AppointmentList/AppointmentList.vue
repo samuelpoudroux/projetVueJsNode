@@ -5,41 +5,20 @@
                 <Popup text="Votre medecin à bien été supprimé" />
       </div>
       <div class="card-header center">
-       <h3 class='' >Docteurs</h3>
-    <sui-input placeholder="Rechercher..." v-if='loading===true' loading icon-position="right" v-model="search" v-on:blur="loading" />
-                  <sui-input placeholder="Rechercher..." v-else icon-position="right" v-model="search"  />      </div>
+       <h3 class='' >RENDEZ-VOUS</h3>
+         <sui-input placeholder="Rechercher..." v-if='loading === true' loading icon-position="right" v-model="search" />
+                  <sui-input placeholder="Rechercher..." v-else icon-position="right" v-model="search" />
+      </div>
        
         <div class="card-body flexWrap p-3 spaceBetween">
         <div class=" loader" v-if="isLoading !== false" > 
                     <Loader class=""></Loader>
 
         </div>
-            <DoctorCard :id="item.id" v-for="item in pageOfItems" :key="item.id" @showPopup="updateParent" />    
+            <AppointmentCard :id="item.id" v-for="item in pageOfItems" :key="item.id" @showPopup="updateParent" />    
         </div>
-
-         <grid
-      :center="false"
-      :draggable="true"
-      :sortable="true"
-      :items="colors"
-      :height="80"
-      :width="80"
-      @change="change"
-      @remove="remove"
-      @click="click"
-      @sort="sort">
-      <template slot="cell" scope="props">
-        <p 
-              >
-
-              {{props.item.name}}
-        
-        </p> 
-      </template>
-    </grid>
-
         <div  v-if="isLoading === false" class="card-footer text-center">
-            <jw-pagination :items="physicians" @changePage="onChangePage" :pageSize="6"></jw-pagination>
+            <jw-pagination :items="appointments" @changePage="onChangePage" :pageSize="6"></jw-pagination>
         </div>
     </div>
 </template>
@@ -47,21 +26,17 @@
 <script>
 
 import Fetch from '../classes/Fetch.js';
-import DoctorCard from './DoctorCard.vue';
+import AppointmentCard from './AppointmentCard.vue';
 import Loader from '../../components/ReusableComponent/Loader.vue';
 
 import Popup from '../Popup.vue'
 
 export default {
-  name: 'DoctorList',
+  name: 'AppointmentList',
 
   data(){
-
-        let colors = [{"name": "ss"},{"name": "saaa"}]
-
         return {
-             physicians: undefined,
-             colors,
+            appointments: undefined,
              showPopup:false,
             pageOfItems: [],
             isLoading:true,
@@ -71,15 +46,15 @@ export default {
   },
     
   components : {
-    DoctorCard, Popup, Loader
+    AppointmentCard, Popup, Loader
   },   
 
   methods:{
-   getAllPhysician(){
-        Fetch.get("http://localhost:3000/physicians/")
+   getAllAppointment(){
+        Fetch.get("http://localhost:3000/appointments/")
        .then(data => {
          console.log(data)
-           this.physicians = data
+           this.appointments = data
            this.isLoading = false
        })
     },
@@ -90,13 +65,13 @@ export default {
 
     handleChange(search){
       if(this.search === "") {
-       this.getAllPhysician()
+       this.getAllpatient()
       } else {
-        this.loading === true
-          Fetch.get("http://localhost:3000/physicians/name/" + search)
+        this.loading = true
+          Fetch.get("http://localhost:3000/appointments/firstname/" + search)
           .then(data => {
             this.isLoading = false,
-            this.loading = false
+            this.loading = false,
             this.pageOfItems = data
        })
       } 
@@ -105,12 +80,11 @@ export default {
     onChangePage(pageOfItems) {
             // update page of items
             this.pageOfItems = pageOfItems;
-    },
+    }
    },
 
-   
     mounted(){
-       this.getAllPhysician()
+       this.getAllAppointment()
    }, 
 
     watch: {

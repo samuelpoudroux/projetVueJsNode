@@ -10,6 +10,11 @@ import SuiVue from 'semantic-ui-vue';
 import YanProgress from 'yan-progress';
 import Vuelidate from 'vuelidate';
 
+import Grid from 'vue-js-grid'
+
+Vue.use(Grid)
+
+
 
 
 /* ... */

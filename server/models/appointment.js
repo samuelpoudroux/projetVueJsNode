@@ -1,11 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Appointment = sequelize.define('Appointment', {
-    physicianId: DataTypes.INTEGER,
-    patientId: DataTypes.INTEGER
-  }, {});
-  Appointment.associate = function(models) {
-    // associations can be defined here
-  };
-  return Appointment;
+    const Appointment = sequelize.define('Appointment', {
+        physicianId: DataTypes.INTEGER,
+        patientId: DataTypes.INTEGER,
+        meetingDate: DataTypes.STRING,
+        meetingName: DataTypes.STRING,
+
+    }, {});
+    Appointment.associate = function(models) {
+        // associations can be defined here
+    };
+    return Appointment;
 };

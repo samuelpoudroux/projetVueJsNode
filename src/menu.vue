@@ -6,7 +6,9 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
         <b-nav-item href ="/doctorList">Listes des docteurs</b-nav-item> 
-                <b-nav-item href="#" disabled>Disabled</b-nav-item>
+        <b-nav-item href ="/patientList">Listes des patients</b-nav-item>
+                <b-nav-item href ="/appointmentList">Listes des rendez-vous</b-nav-item> 
+                                <b-nav-item href ="/drag">drag</b-nav-item> 
        <b-nav-item href="#" disabled>Disabled</b-nav-item>
         </b-navbar-nav>
 

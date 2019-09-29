@@ -1,4 +1,6 @@
 const Patient = require("../../../server/models/").Patient;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.patient_get = (req, res) => {
     Patient.findAll()
@@ -9,6 +11,19 @@ exports.patient_get = (req, res) => {
                 message: err.message || "Some error occurred while retrieving patients."
             });
         });
+}
+
+exports.patient_get_startingBy = (req, res) => {
+    Patient.findAll({
+        where: {
+            firstName: {
+                [Op.startsWith]: req.params.firstname
+            }
+        }
+
+    }).then(patient => {
+        res.send(patient)
+    })
 }
 
 // Create and Save a new patient
