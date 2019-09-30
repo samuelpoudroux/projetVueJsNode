@@ -1,37 +1,30 @@
 <template>
   <div id="app">
     <div style="padding: 10px;">
-      <a class="github-button"
-         href="https://github.com/euvl/vue-js-grid"
-         data-icon="octicon-star"
-         data-show-count="true"
-         aria-label="Star euvl/vue-js-grid on GitHub">Star</a>
     </div>
     <div class="color-header">
-      <Icon :color="selected" style="width: auto;">
-        vue-js-grid
-      </Icon>
+      <sui-input class='ml-5' placeholder="Rechercher..." icon-position="right" v-model="search"  />
     </div>
     <grid
       :center="false"
       :draggable="true"
       :sortable="true"
-      :items="colors"
+      :items="physicians"
       :height="80"
       :width="80"
+      :cellWidth="300"
       @change="change"
       @remove="remove"
       @click="click"
       @sort="sort">
       <template slot="cell" scope="props">
-        <p 
-              >
+      <div class='ml-5'>
+            <Dam :id="props.item.id" :key="props.item.id" @showPopup="updateParent" />
+</div>
 
-              {{props.item.name}}
-        
-        </p> 
       </template>
     </grid>
+    
 <!--
     <grid
       :center="false"
@@ -54,29 +47,27 @@
 
 
 <script>
+import Dam from './DoctorList/DoctorCard.vue'
+import Fetch from './classes/Fetch.js';
 
 export default {
   name: 'drag',
   components: {
+    Dam
   },
   data () {
-    let colors = [{"name": "ss"},{"name": "saaa"}]
     return {
-      colors,
-      selected: null
+      physicians:[{"name": "ss"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"},{"name": "saaa"}],
+      selected: null,
+      isLoading:true,
+            search:"",
+            loading: false,
     }
   },
   mounted () {
-    /*
-    setInterval(() => {
-      let item = {
-        color:  generateRGBColors(1)[0],
-        index: this.items.length
-      }
-      this.items.push(item)
-    }, 5000)
-    */
+   this.getAllPhysician()
   },
+
   methods: {
     click ({ items, index }) {
       let value = items.find(v => v.index === index)
@@ -91,8 +82,35 @@ export default {
     },
     sort (event) {
       console.log('sort', event)
+    },
+
+
+      getAllPhysician(){
+        Fetch.get("http://localhost:3000/physicians/")
+       .then(data => {
+         console.log(data)
+           this.physicians = data
+       })
+    },
+       handleChange(search){
+      if(this.search === "") {
+       this.getAllPhysician()
+      } else {
+        this.loading === true
+          Fetch.get("http://localhost:3000/physicians/name/" + search)
+          .then(data => {
+            this.isLoading = false,
+            this.loading = false
+            this.physicians = data
+       })
+      } 
+    }, 
+  },
+     watch: {
+  'search': function() {
+this.handleChange(this.search)
+ }
     }
-  }
 }
 </script>
 
@@ -111,3 +129,10 @@ body {
   padding: 10px 0;
   box-sizing: border-box;
 }
+
+.red{
+  background:red
+}
+
+
+</style>

@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     const Appointment = sequelize.define('Appointment', {
         physicianId: DataTypes.INTEGER,
         patientId: DataTypes.INTEGER,
-        meetingDate: DataTypes.STRING,
+        meetingDate: DataTypes.DATE,
         meetingName: DataTypes.STRING,
 
     }, {});

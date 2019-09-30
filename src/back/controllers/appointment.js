@@ -14,11 +14,11 @@ exports.appointment_get = (req, res) => {
 // Create and Save a new appointment
 exports.appointment_create = (req, res) => {
     // Validate request
-    if (!req.body.patientId || !req.body.physicianId || !req.body.meetingName || !req.body.meetingDate) {
-        return res.status(400).send({
-            message: "le prénom du medecin doit être indiqué"
-        });
-    }
+    // if (!req.body.patientId || !req.body.physicianId || !req.body.meetingName || !req.body.meetingDate) {
+    //     return res.status(400).send({
+    //         message: "le prénom du medecin doit être indiqué"
+    //     });
+    // }
     // Save appointment in the database
     Appointment.create({
         meetingName: req.body.meetingName,

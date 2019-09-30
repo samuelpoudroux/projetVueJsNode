@@ -78,13 +78,14 @@ Fetch.get("http://localhost:3000/patients/" + id )
        })
     },
 
-    getPhysicianData(id){
-Fetch.get("http://localhost:3000/physicians/" + id )
+   getPhysicianData(id){
+ Fetch.get("http://localhost:3000/physicians/" + id )
        .then(data => {
-           this.physician = data
-           Fetch.get("http://localhost:3000/specialities/" + data.specialityId )
+           Fetch.get("http://localhost:3000/specialities/" + data.id)
            .then(speciality => {
              this.speciality = speciality
+                        this.physician = data
+
            })
        })
     },

@@ -14,29 +14,8 @@
                     <Loader class=""></Loader>
 
         </div>
-            <DoctorCard :id="item.id" v-for="item in pageOfItems" :key="item.id" @showPopup="updateParent" />    
+            <DoctorCard class='ml-4' :id="item.id" v-for="item in pageOfItems" :key="item.id" @showPopup="updateParent" />    
         </div>
-
-         <grid
-      :center="false"
-      :draggable="true"
-      :sortable="true"
-      :items="colors"
-      :height="80"
-      :width="80"
-      @change="change"
-      @remove="remove"
-      @click="click"
-      @sort="sort">
-      <template slot="cell" scope="props">
-        <p 
-              >
-
-              {{props.item.name}}
-        
-        </p> 
-      </template>
-    </grid>
 
         <div  v-if="isLoading === false" class="card-footer text-center">
             <jw-pagination :items="physicians" @changePage="onChangePage" :pageSize="6"></jw-pagination>
@@ -51,6 +30,7 @@ import DoctorCard from './DoctorCard.vue';
 import Loader from '../../components/ReusableComponent/Loader.vue';
 
 import Popup from '../Popup.vue'
+
 
 export default {
   name: 'DoctorList',
@@ -149,7 +129,6 @@ padding: 1%
   display: flex;
   flex-direction: row; 
   flex-flow: row wrap;
-  justify-content: space-between
 
 }
 
@@ -159,7 +138,6 @@ padding: 1%
 
 .spaceBetween{
   align-content: space-between;
-  justify-content: space-between
 }
 
 input,

@@ -116,9 +116,10 @@ export default {
                 meetingDate: this.date ? new Date (this.date) : null,
                 meetingName: this.meetingName
             }
+            console.log(AppointmentBody)
                         Fetch.post('http://localhost:3000/appointments', AppointmentBody)
                         .then(data => {
-this.showPopup = true                        })
+this.showPopup = true                      })
                         .catch(error => {
                             console.log(error)
                             alert('verifier que les champs sont bien remplis')

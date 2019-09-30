@@ -1,6 +1,6 @@
 
   <template>
-    <div class="card col-lg-5">
+    <div class="card ">
       <div class="card-body">
         <h5 class="card-title">Medecin numéro {{ physician.id}}</h5>
         <p v-if="isLoaded === false" class="card-text">{{ physician.firstName}} {{ physician.lastName}} </p>

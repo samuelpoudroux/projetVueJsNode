@@ -15,11 +15,12 @@
                     <Loader class=""></Loader>
 
         </div>
-            <AppointmentCard :id="item.id" v-for="item in pageOfItems" :key="item.id" @showPopup="updateParent" />    
+            <AppointmentCard :id="item.id" v-for="item in pageOfItems" :key="item.id" @showPopup="updateParent"/>  
         </div>
         <div  v-if="isLoading === false" class="card-footer text-center">
             <jw-pagination :items="appointments" @changePage="onChangePage" :pageSize="6"></jw-pagination>
         </div>
+
     </div>
 </template>
 
@@ -36,7 +37,7 @@ export default {
 
   data(){
         return {
-            appointments: undefined,
+            appointments: null,
              showPopup:false,
             pageOfItems: [],
             isLoading:true,
@@ -51,7 +52,7 @@ export default {
 
   methods:{
    getAllAppointment(){
-        Fetch.get("http://localhost:3000/appointments/")
+        Fetch.get("http://localhost:3000/appointments")
        .then(data => {
          console.log(data)
            this.appointments = data
@@ -65,7 +66,7 @@ export default {
 
     handleChange(search){
       if(this.search === "") {
-       this.getAllpatient()
+       this.getAllAppointment()
       } else {
         this.loading = true
           Fetch.get("http://localhost:3000/appointments/firstname/" + search)
